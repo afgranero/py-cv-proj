@@ -26,6 +26,7 @@
 #           - save the intermediate images with same name as the original as prefix and with suffix _1, _2, etc
 #           - on a production environment I would separate this on another class using python decorators to call it
 #           - if there were more test cases I would not print them individually but just save the steps on disk
+#
 
 # Usage:
 #
@@ -39,30 +40,34 @@ import cv2
 import sys
 
 
-class Finder():
+class FindCircles():
 
     def __init__(self, imageFile, debug = True):
         self.img = cv2.imread(imageFile)
         self.debug = debug
+        self.circles = None
         if debug:
             self.debug_images = []
             self.debug_images_count = 0
             self.debug_images_current = 0
 
-    def find_circle(self):
-
+    def execute(self):
         img = np.array(self.img, copy=True)
 
-        self._show_step(0, img)
+        self._show_step(0, "original", img)
 
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        self._show_step(1, img)
+        self._show_step(1, "gray scale", img)
 
         img = self.clean(img)
-        self._show_step(2, img)
+        self._show_step(2, "cleaned", img)
 
-        img = self.highlight_circles(img)
-        self._show_step(3, img)
+        circles = self.find_circles(img)
+        self.circles = circles
+        img = self.highlight_circles(self.img, circles)
+        self._show_step(3, "final result", img)
+
+        return img
 
     def clean(self, img):
         kernel = np.ones((3, 3), np.uint8)
@@ -70,39 +75,48 @@ class Finder():
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel, iterations = 4)
         return img
 
-    def highlight_circles(self, img, param2=36):
-        # TO DO separate detect and highlight
-        min_param2 = 18
-
+    def find_circles(self, img, param2=36):
         circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 20, param1=150, param2=param2, minRadius=10, maxRadius=500)
 
+        if circles is None:
+            # no circle found use smaller param2 do it just once to avoid find too many circles and too many recursion
+            # the easiest way if to set a min value to param2
+            min_param2 = 18
+            if param2 > min_param2:
+                param2 /= 2
+                return self.highlight_circles(img, param2)
+            else:
+                return None
+
+        return circles
+
+    def highlight_circles(self, img, circles):
         if circles is not None:
             circles = np.uint16(np.around(circles))
             blue = (255, 0, 0)
             red = (0, 0, 255)
             for i in circles[0, :]:
-                cv2.circle(self.img, (i[0], i[1]), i[2], blue, 2) # show circle as a green circle
-                cv2.circle(self.img, (i[0], i[1]), 2, red, 3) # show centers as a red 2 pixel diameter circle
-            return self.img
+                cv2.circle(img, (i[0], i[1]), i[2], blue, 2) # show circle as a green circle
+                cv2.circle(img, (i[0], i[1]), 2, red, 3) # show centers as a red 2 pixel diameter circle
+            return img
         else:
-            # no circle found use smaller param2 do it just once to avoid find too many circles and too many recursion
-            # the easiest way if to set a min value to param2
-            if param2 > min_param2:
-                param2 /= 2
-                return self.highlight_circles(img, param2)
-            else:
-                return self.img
+            return img
 
-
-    def _show_step(self, n, img):
+    def _show_step(self, n, title, img):
         if self.debug:
+
             self.debug_images_current = n
             self.debug_images_count += 1
             self.debug_images.append(img)
-            key = 0
+
             while True:
                 cv2.destroyAllWindows()
-                cv2.imshow(str(self.debug_images_current), self.debug_images[self.debug_images_current])
+
+                title_format = "%d - %s - Use right and left arrow keys to navigate steps"
+                window_title = title_format % (self.debug_images_current, title)
+
+                cv2.imshow(window_title, self.debug_images[self.debug_images_current])
+
                 key = cv2.waitKeyEx(0) # & 0xFF
                 if key == 2555904 and self.debug_images_current == self.debug_images_count - 1:
                     # if right arrow was pressed but there is no more images get out of loop to next step
@@ -123,8 +137,13 @@ class Finder():
         pass
 
 def main():
-    finder = Finder(sys.argv[1])
-    finder.find_circle()
+    find_circles = FindCircles(sys.argv[1])
+    img = find_circles.execute()
+
+    # cv2.namedWindow("Final result", cv2.WINDOW_AUTOSIZE)
+    # cv2.showImage("Final result", finder.img)
+    # cv2.resizeWindow("Final result", img.width * 2, img.height)
+    # cv2.waitKey()
 
     # TODO print circle coordinates from CircleFinder
     # TODO save processed image with highlighted circles and print this action so the user knows it
