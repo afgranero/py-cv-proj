@@ -18,29 +18,29 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="pycv-proj-test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pycv-proj-test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pycv-proj-test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="408">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="34" selection-end-column="59" />
               <folding>
-                <element signature="e#1562#1580#0" expanded="true" />
-                <element signature="e#2038#2560#0" expanded="false" />
-                <element signature="e#2596#2797#0" expanded="false" />
-                <element signature="e#2851#3396#0" expanded="false" />
-                <element signature="e#3453#3873#0" expanded="false" />
-                <element signature="e#3924#5187#0" expanded="false" />
-                <element signature="e#5225#5281#0" expanded="false" />
+                <element signature="e#1655#1673#0" expanded="true" />
+                <element signature="e#2131#2653#0" expanded="false" />
+                <element signature="e#2689#2890#0" expanded="false" />
+                <element signature="e#2944#3489#0" expanded="false" />
+                <element signature="e#3546#3966#0" expanded="false" />
+                <element signature="e#4017#5280#0" expanded="false" />
+                <element signature="e#5318#5374#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="480">
+              <caret line="29" column="3" lean-forward="false" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -54,8 +54,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/pycv-proj-test.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -294,7 +294,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -342,13 +342,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1562#1580#0" expanded="true" />
-            <element signature="e#2038#2560#0" expanded="false" />
-            <element signature="e#2596#2797#0" expanded="false" />
-            <element signature="e#2851#3396#0" expanded="false" />
-            <element signature="e#3453#3873#0" expanded="false" />
-            <element signature="e#3924#5187#0" expanded="false" />
-            <element signature="e#5225#5281#0" expanded="false" />
+            <element signature="e#1655#1673#0" expanded="true" />
+            <element signature="e#2131#2653#0" expanded="false" />
+            <element signature="e#2689#2890#0" expanded="false" />
+            <element signature="e#2944#3489#0" expanded="false" />
+            <element signature="e#3546#3966#0" expanded="false" />
+            <element signature="e#4017#5280#0" expanded="false" />
+            <element signature="e#5318#5374#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -366,13 +366,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1562#1580#0" expanded="true" />
-            <element signature="e#2038#2560#0" expanded="false" />
-            <element signature="e#2596#2797#0" expanded="false" />
-            <element signature="e#2851#3396#0" expanded="false" />
-            <element signature="e#3453#3873#0" expanded="false" />
-            <element signature="e#3924#5187#0" expanded="false" />
-            <element signature="e#5225#5281#0" expanded="false" />
+            <element signature="e#1655#1673#0" expanded="true" />
+            <element signature="e#2131#2653#0" expanded="false" />
+            <element signature="e#2689#2890#0" expanded="false" />
+            <element signature="e#2944#3489#0" expanded="false" />
+            <element signature="e#3546#3966#0" expanded="false" />
+            <element signature="e#4017#5280#0" expanded="false" />
+            <element signature="e#5318#5374#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -390,13 +390,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1562#1580#0" expanded="true" />
-            <element signature="e#2038#2560#0" expanded="false" />
-            <element signature="e#2596#2797#0" expanded="false" />
-            <element signature="e#2851#3396#0" expanded="false" />
-            <element signature="e#3453#3873#0" expanded="false" />
-            <element signature="e#3924#5187#0" expanded="false" />
-            <element signature="e#5225#5281#0" expanded="false" />
+            <element signature="e#1655#1673#0" expanded="true" />
+            <element signature="e#2131#2653#0" expanded="false" />
+            <element signature="e#2689#2890#0" expanded="false" />
+            <element signature="e#2944#3489#0" expanded="false" />
+            <element signature="e#3546#3966#0" expanded="false" />
+            <element signature="e#4017#5280#0" expanded="false" />
+            <element signature="e#5318#5374#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -414,13 +414,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1562#1580#0" expanded="true" />
-            <element signature="e#2038#2560#0" expanded="false" />
-            <element signature="e#2596#2797#0" expanded="false" />
-            <element signature="e#2851#3396#0" expanded="false" />
-            <element signature="e#3453#3873#0" expanded="false" />
-            <element signature="e#3924#5187#0" expanded="false" />
-            <element signature="e#5225#5281#0" expanded="false" />
+            <element signature="e#1655#1673#0" expanded="true" />
+            <element signature="e#2131#2653#0" expanded="false" />
+            <element signature="e#2689#2890#0" expanded="false" />
+            <element signature="e#2944#3489#0" expanded="false" />
+            <element signature="e#3546#3966#0" expanded="false" />
+            <element signature="e#4017#5280#0" expanded="false" />
+            <element signature="e#5318#5374#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -460,27 +460,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/pycv-proj-test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="408">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="34" selection-end-column="59" />
+          <folding>
+            <element signature="e#1655#1673#0" expanded="true" />
+            <element signature="e#2131#2653#0" expanded="false" />
+            <element signature="e#2689#2890#0" expanded="false" />
+            <element signature="e#2944#3489#0" expanded="false" />
+            <element signature="e#3546#3966#0" expanded="false" />
+            <element signature="e#4017#5280#0" expanded="false" />
+            <element signature="e#5318#5374#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pycv-proj-test.py">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding>
-            <element signature="e#1562#1580#0" expanded="true" />
-            <element signature="e#2038#2560#0" expanded="false" />
-            <element signature="e#2596#2797#0" expanded="false" />
-            <element signature="e#2851#3396#0" expanded="false" />
-            <element signature="e#3453#3873#0" expanded="false" />
-            <element signature="e#3924#5187#0" expanded="false" />
-            <element signature="e#5225#5281#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="480">
+          <caret line="29" column="3" lean-forward="false" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>

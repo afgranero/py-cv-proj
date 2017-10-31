@@ -1,70 +1,30 @@
-
 # Test for Python + OpenCV developers
 
-Test Instructions
----
 
 **Problem:**
 
 Detect circles with diameter greater than 10 pixels.
 
-**Suggested Script and Solution:**
+**Comments on my solution:**
 
-- Apply filters such as opening and closing, to eliminate noise and elements for better circles detection.
-- Use Hough Transform for circles
-- Check if the diameter of the circles obtained is greater than 10 pixels.
-- Display original and solved images "side by side(\*)".
+- I pulled this to github [here](https://github.com/afgranero/py-cv-proj) 
+- I have other repos but they are private because they are not finished, tell me if you want access to them
+- As this is a test and I am doing it alone I will not use topic branches or issues
+- I interpreted "detect circles" in two ways:
+    -  find circles centers;
+    - highlight the circles on the original image and save it
+- I took the following liberties:
+    - I used tab as 4 spaces (the default in my environment and PEP 8 recommends);
+ - I used virtualenv to isolate libraries;
+ - I did not committed the virtual environment to git though, I used pip freeze to create a __requirements.txt__. See this file for the libraries versions needed.
+ - I created the switch -debug on the command line, will do two things:
+         - show the intermediate states of processing on screen
+         - save the intermediate images with same name as the original as prefix and with suffix _1, _2, etc
+         - on a production environment I would separate this on another class using python decorators to call it
+         - if there were more test cases I would not print them individually, I would just save the steps on disk
 
-Directory `images` contains two image files for test your solution.
-
-Use Python version 3.x.x and OpenCV version 3.1 or superior.
-
-It is desirable only one unique solution for both images, but not mandatory.
-
-Developing and submitting
----
-You must "clone" (fork is not recommend) this project into your own GitHub account.
-Solve, develop and commit while in your own repository.
-Share with us your GitHub project.
-
---------------------
-
-# Teste para desenvolvedores Python + OpenCV [Pt-BR] 🇧🇷
-
-Instruções do teste
----
-
-**Problema:**
-
-Detectar os círculos com diâmetro superior a 10 pixels.
-
-**Script e solução sugerida:**
-- Aplicar filtros como abertura e fechamento, para eliminar ruídos e elementos que se confundam com círculos.
-- Utilizar a Transformada de Hough para círculos
-- Verificar se o diâmetro dos círculos obtidos é maior que 10 pixels.
-- Exibir as imagens original e solução "lado a lado(\*)".
-
-As imagens de teste estão disponíveis na pasta `imagens`.
-
-Use Python 3.x.x e OpenCV versão 3.1 ou superior.
-
-É desejável apenas uma solução única para as duas imagens, mas não mandatório.
-
-Desenvolvimento e entrega
----
-Você deve "clonar" (não recomendamos "fork") este projeto em sua própria conta do GitHub.
-Desenvolva e faça "commit" em seu próprio repositório.
-Envie para nós seu projeto no GitHub.
-
-(\*)
-```
-+---------------------+---------------------+
-|                     |                     |
-|                     |                     |
-|      original       |     processed       |
-|                     |                     |
-|       image         |       image         |
-|                     |                     |
-|                     |                     |
-+---------------------+---------------------+
+**Usage:**
+```python pycv-proj-test.py images/image_filename
+python3 pycv-proj-test.py images/image_filename
+python pycv-proj-test.py images/image_filename -nodebug
 ```
