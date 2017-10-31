@@ -42,8 +42,12 @@ import sys
 
 class FindCircles():
 
-    def __init__(self, imageFile, debug = True):
-        self.img = cv2.imread(imageFile)
+    def __init__(self, image_file, debug=True):
+        self.img = cv2.imread(image_file)
+
+        if self.img is None:
+            raise RuntimeError("'%s' file not found." % image_file)
+
         self.debug = debug
         self.circles = None
         if debug:
@@ -62,9 +66,10 @@ class FindCircles():
         img = self.clean(img)
         self._show_step(2, "cleaned", img)
 
-        circles = self.find_circles(img)
+        circles = self.find_circles(img, param2=17)
         self.circles = circles
-        img = self.highlight_circles(self.img, circles)
+        original_image = np.array(self.img, copy=True)
+        img = self.highlight_circles(original_image, circles)
         self._show_step(3, "final result", img)
 
         return img
@@ -72,7 +77,7 @@ class FindCircles():
     def clean(self, img):
         kernel = np.ones((3, 3), np.uint8)
         # kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (10, 10))
-        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel, iterations = 4)
+        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel, iterations=4)
         return img
 
     def find_circles(self, img, param2=36):
@@ -91,16 +96,18 @@ class FindCircles():
         return circles
 
     def highlight_circles(self, img, circles):
-        if circles is not None:
-            circles = np.uint16(np.around(circles))
-            blue = (255, 0, 0)
-            red = (0, 0, 255)
-            for i in circles[0, :]:
-                cv2.circle(img, (i[0], i[1]), i[2], blue, 2) # show circle as a green circle
-                cv2.circle(img, (i[0], i[1]), 2, red, 3) # show centers as a red 2 pixel diameter circle
+        if circles is None:
             return img
-        else:
-            return img
+
+        CIRCLE_COLOR = (255, 0, 0)
+        CENTER_COLOR = (0, 0, 255)
+
+        circles = np.uint16(np.around(circles))
+        for i in circles[0, :]:
+            center = (i[0], i[1])
+            cv2.circle(img, center, i[2], CIRCLE_COLOR, 2)  # show circle
+            cv2.circle(img, center, 2, CENTER_COLOR, 3)  # show centers as a 2 pixel radius circle
+        return img
 
     def _show_step(self, n, title, img):
         if self.debug:
@@ -112,22 +119,21 @@ class FindCircles():
             while True:
                 cv2.destroyAllWindows()
 
-                title_format = "%d - %s - Use right and left arrow keys to navigate steps"
+                title_format = "%d - %s - right and left arrow keys navigate steps"
                 window_title = title_format % (self.debug_images_current, title)
 
                 cv2.imshow(window_title, self.debug_images[self.debug_images_current])
 
-                key = cv2.waitKeyEx(0) # & 0xFF
+                key = cv2.waitKeyEx(0)
                 if key == 2555904 and self.debug_images_current == self.debug_images_count - 1:
                     # if right arrow was pressed but there is no more images get out of loop to next step
-                    # must come before antering self.debug_images_current as tests do not use else if
+                    # must come before entering self.debug_images_current as tests do not use else if
                     cv2.destroyAllWindows()
                     break
                 if key == 2555904 and self.debug_images_current < self.debug_images_count - 1:
                     self.debug_images_current += 1
                 if key == 2424832 and 0 < self.debug_images_current:
                     self.debug_images_current -= 1
-
                 if key != 2555904 and key != 2424832:
                     cv2.destroyAllWindows()
                     break
@@ -136,19 +142,25 @@ class FindCircles():
         # TODO save all images on self.debug_images
         pass
 
+
+
 def main():
+    # do all the stuff
     find_circles = FindCircles(sys.argv[1])
     img = find_circles.execute()
 
-    # cv2.namedWindow("Final result", cv2.WINDOW_AUTOSIZE)
-    # cv2.showImage("Final result", finder.img)
-    # cv2.resizeWindow("Final result", img.width * 2, img.height)
-    # cv2.waitKey()
+    # create composite result image from initial and final images
+    height, width, channels = img.shape
+    black_image = np.zeros((height, 1, 3), np.uint8) # thin vertical black border
+    result = np.hstack((find_circles.img, black_image, img))
+
+    cv2.imshow("Final result", result)
+    cv2.waitKey()
 
     # TODO print circle coordinates from CircleFinder
     # TODO save processed image with highlighted circles and print this action so the user knows it
     # TODO find -nodebug argument aun use the others as the file
     # TODO validate file existence before passing it
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
