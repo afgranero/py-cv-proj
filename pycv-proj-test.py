@@ -29,6 +29,7 @@
 #         - save the intermediate images with same name as the original as prefix and with suffix `_1`, `_2`, etc;
 #         - on a production environment I would separate this on another class using python decorators to call it;
 #         - on a production environment I would do the opposite: to create a `-debug` switch instead
+#         - if there were much more test cases I would not print them individually, I would just save the steps.
 
 
 # Usage:

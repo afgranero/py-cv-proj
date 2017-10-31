@@ -19,8 +19,8 @@ Detect circles with diameter greater than 10 pixels.
     - I did not committed the virtual environment to git though, I used `pip freeze` to create a `requirements.txt`;
     - refer to `requirements.txt` for the libraries versions needed;
     - I created the switch `-nodebug` on the command line, without this switch it will do this:
-        - show the intermediate states of processing on screen;
-        - when an intermediate result appears you can use left and right arrow keys to navigate intermediate steps;
+        - show windows with the intermediate states of processing on screen;
+        - you can use left and right arrow keys to navigate intermediate steps;
         - save the intermediate images with same name as the original as prefix and with suffix `_1`, `_2`, etc;
         - on a production environment I would separate this on another class using python decorators to call it;
         - on a production environment I would do the opposite: to create a `-debug` switch instead
@@ -41,12 +41,11 @@ python pycv-proj-test.py images/image_filename -nodebug
 
 Detetar circunferências maiores que 10 pixels.
 
-**Comments on my solution:**
+**Commentários à minha solução:**
 
 - Fiz _pull_ para o _github_ [here](https://github.com/afgranero/py-cv-proj)
 - tenho outros repositórios, mas eles são privados pois ainda estão incompletos;
 - como isso é um teste e eu estou trabalhando sozinho, não usei _branches_ de tópico ou _issues_;
-- I interpreted "detect circles" in two ways:
 - interpretei "detetar circunferências" de duas maneiras:
 
     - encontra os centos das circunferências;
@@ -57,9 +56,8 @@ Detetar circunferências maiores que 10 pixels.
     - entretanto não fiz _commit_ do ambiente virtual para o _git_, usei `pip freeze` para criar o `requirements.txt`;
     - recorra ao `requirements.txt` para as versões das bibliotecas necessárias;
     - criei  _switch_ `-nodebug` na linha de comando, sem este switch o _script_ fará o seguinte:
-        - show the intermediate states of processing on screen;
-        - quando uma janela de resutados intermediários aparecer, você pode usar setas para esquerda e direita para navegar nos passos intermediários
-        - mostrar os estados intermediários do processamento na tela;
+        - abrir janelas para mostrar os estados intermediários do processamento na tela;
+        - você pode usar setas para esquerda e direita para navegar nos passos intermediários
         - salvar as imagens intermediárias com o mesmo nome da original como prefixo e com sufixo `_1`, `_2`, etc;
         - em um ambiente de produção eu separaria isso em outra classe usando __decorators_ do Python para chamar;
         - em um ambiente de produção eu faria o inverso: criaria um _switch_ `-debug`;
