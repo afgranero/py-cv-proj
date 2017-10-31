@@ -55,6 +55,7 @@ class FindCircles():
         self.circles = None
         if debug:
             self.debug_images = []
+            self.debug_titles = []
             self.debug_images_count = 0
             self.debug_images_current = 0
 
@@ -73,7 +74,7 @@ class FindCircles():
         self.circles = circles
         original_image = np.array(self.img, copy=True)
         img = self.highlight_circles(original_image, circles)
-        self._show_step(3, "final result", img)
+        self._show_step(3, "result", img)
 
         return img
 
@@ -87,7 +88,7 @@ class FindCircles():
         circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 20, param1=150, param2=param2, minRadius=10, maxRadius=500)
 
         if circles is None:
-            # no circle found use smaller param2 do it just once to avoid find too many circles and too many recursion
+            # no circle found use smaller param2 do it just once to avoid find too many circles and too much recursion
             # the easiest way if to set a min value to param2
             min_param2 = 18
             if param2 > min_param2:
@@ -118,12 +119,13 @@ class FindCircles():
             self.debug_images_current = n
             self.debug_images_count += 1
             self.debug_images.append(img)
+            self.debug_titles.append(title)
 
             while True:
                 cv2.destroyAllWindows()
 
-                title_format = "%d - %s - right and left arrow keys navigate steps"
-                window_title = title_format % (self.debug_images_current, title)
+                title_format = "%d - %s - right and left arrow keys navigate steps, -nodebug to supress those windows"
+                window_title = title_format % (self.debug_images_current, self.debug_titles[self.debug_images_current])
 
                 cv2.imshow(window_title, self.debug_images[self.debug_images_current])
 
