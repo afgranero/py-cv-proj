@@ -43,7 +43,7 @@ Detetar circunferências maiores que 10 pixels.
 
 **Commentários à minha solução:**
 
-- Fiz _pull_ para o _github_ [here](https://github.com/afgranero/py-cv-proj)
+- Fiz _pull_ para o _github_ [aqui](https://github.com/afgranero/py-cv-proj)
 - tenho outros repositórios, mas eles são privados pois ainda estão incompletos;
 - como isso é um teste e eu estou trabalhando sozinho, não usei _branches_ de tópico ou _issues_;
 - interpretei "detetar circunferências" de duas maneiras:
