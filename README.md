@@ -55,11 +55,11 @@ Detetar circunferências maiores que 10 pixels.
     - usei o _virtualenv_ para isolar as bibliotecas;
     - entretanto não fiz _commit_ do ambiente virtual para o _git_, usei `pip freeze` para criar o `requirements.txt`;
     - recorra ao `requirements.txt` para as versões das bibliotecas necessárias;
-    - criei  _switch_ `-nodebug` na linha de comando, sem este switch o _script_ fará o seguinte:
+    - criei  _switch_ `-nodebug` na linha de comando, sem este _switch_ o _script_ fará o seguinte:
         - abrir janelas para mostrar os estados intermediários do processamento na tela;
         - você pode usar setas para esquerda e direita para navegar nos passos intermediários
         - salvar as imagens intermediárias com o mesmo nome da original como prefixo e com sufixo `_1`, `_2`, etc;
-        - em um ambiente de produção eu separaria isso em outra classe usando __decorators_ do Python para chamar;
+        - em um ambiente de produção eu separaria isso em outra classe usando _decorators_ do Python para chamar;
         - em um ambiente de produção eu faria o inverso: criaria um _switch_ `-debug`;
         - seu houvesse muitos casos de teste eu não os mostraria individualmente, eu apenas salvaria os passos.
 
