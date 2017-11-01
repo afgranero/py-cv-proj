@@ -73,25 +73,9 @@ class FindCircles():
 
         circles = self.find_circles(img, 37)
         self.circles = circles
-
-        # if circles is None:
-        #     # try to smooth the image and try again
-        #     img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
-        #     self._show_step(3, "threshold", img)
-        #
-        #     kernel = np.ones((3, 3), np.uint8)
-        #     img = cv2.erode(img, kernel)
-        #     self._show_step(4, "erosion", img)
-        #
-        #     circles = self.find_circles(img)
-        #     self.circles = circles
-
-
         clusters = self.cluster_centers(circles, 50)
-
-        #img = self.highlight_circles(self.img, circles)
         img = self.highlight_clusters(self.img, clusters)
-        #self._show_step(3, "result", img)
+        self._show_step(3, "result", img)
 
         return img
 
@@ -105,8 +89,9 @@ class FindCircles():
         circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 20, param1=150, param2=param2, minRadius=0, maxRadius=0)
 
         if circles is None:
-            # no circle found use smaller param2 do it just once to avoid find too many circles and too much recursion
-            # the easiest way if to set a min value to param2
+            # no circle found
+            # backtrack and use smaller param2 do it j
+            # to avoid too many circles and too much recursion limit param2
             min_param2 = 14
             if param2 > min_param2:
                 param2 /= 2.5
@@ -136,8 +121,6 @@ class FindCircles():
                 clusters = np.array([[cir[0], cir[1], cir[2]]])
             else:
                 clusters = np.append(clusters, [[cir[0], cir[1], cir[2]]], axis=0)
-
-            img = self.highlight_clusters(self.img, clusters)
 
         return clusters
 
@@ -177,6 +160,7 @@ class FindCircles():
             cv2.circle(original_image, center, radius, CIRCLE_COLOR, 1)  # show circle
             cv2.circle(original_image, center, 2, CENTER_INNER_COLOR, -1)  # show centers as a 2 pixel radius filled circle ...
             cv2.circle(original_image, center, 2, CENTER_OUTER_COLOR, 1)  # show centers as a 2 pixel radius filled circle
+
         return original_image
 
     def _show_step(self, n, title, img):
