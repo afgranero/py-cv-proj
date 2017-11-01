@@ -44,7 +44,7 @@ import sys
 import math
 
 
-class FindCircles():
+class FindCircles:
 
     def __init__(self, image_file, debug=True):
         self.img = cv2.imread(image_file)
@@ -74,6 +74,7 @@ class FindCircles():
         circles = self.find_circles(img, 37)
         self.circles = circles
         clusters = self.cluster_centers(circles, 50)
+        clusters = np.array([clusters], copy=True)
         img = self.highlight_clusters(self.img, clusters)
         self._show_step(3, "result", img)
 
@@ -124,25 +125,6 @@ class FindCircles():
 
         return clusters
 
-    def highlight_circles(self, img, circles):
-        if circles is None:
-            return img
-
-        CIRCLE_COLOR = (255, 0, 0)
-        CENTER_INNER_COLOR = (0, 0, 255)
-        CENTER_OUTER_COLOR = (0, 255, 0)
-
-        original_image = np.array(img, copy=True)
-
-        circles = np.uint16(np.around(circles))
-        for i in circles[0, :]:
-            center = (i[0], i[1])
-            radius = i[2]
-            cv2.circle(original_image, center, radius, CIRCLE_COLOR, 1)  # show circle
-            cv2.circle(original_image, center, 2, CENTER_INNER_COLOR, -1)  # show centers as a 2 pixel radius filled circle ...
-            cv2.circle(original_image, center, 2, CENTER_OUTER_COLOR, 1)  # show centers as a 2 pixel radius filled circle
-        return original_image
-
     def highlight_clusters(self, img, circles):
         if circles is None:
             return img
@@ -152,14 +134,13 @@ class FindCircles():
         CENTER_OUTER_COLOR = (0, 255, 0)
 
         original_image = np.array(img, copy=True)
-
         circles = np.uint16(np.around(circles))
-        for i in circles:
+        for i in circles[0, :]:
             center = (i[0], i[1])
             radius = i[2]
             cv2.circle(original_image, center, radius, CIRCLE_COLOR, 1)  # show circle
-            cv2.circle(original_image, center, 2, CENTER_INNER_COLOR, -1)  # show centers as a 2 pixel radius filled circle ...
-            cv2.circle(original_image, center, 2, CENTER_OUTER_COLOR, 1)  # show centers as a 2 pixel radius filled circle
+            cv2.circle(original_image, center, 2, CENTER_INNER_COLOR, -1)  # show centers as a 2 pixel radius ball
+            cv2.circle(original_image, center, 2, CENTER_OUTER_COLOR, 1)  # show centers as a 2 pixel radius ball
 
         return original_image
 
@@ -174,7 +155,7 @@ class FindCircles():
             while True:
                 cv2.destroyAllWindows()
 
-                title_format = "%d - %s - right and left arrow keys navigate steps, -nodebug to supress those windows"
+                title_format = "%d - %s - right and left arrow keys navigate steps, -nodebug to suppress those windows"
                 window_title = title_format % (self.debug_images_current, self.debug_titles[self.debug_images_current])
 
                 cv2.imshow(window_title, self.debug_images[self.debug_images_current])
@@ -205,7 +186,7 @@ def main():
 
     # create composite result image from initial and final images
     height, width, channels = img.shape
-    black_image = np.zeros((height, 1, 3), np.uint8) # thin vertical black border
+    black_image = np.zeros((height, 1, 3), np.uint8)  # thin vertical black border
     result = np.hstack((find_circles.img, black_image, img))
 
     cv2.imshow("Final result", result)
