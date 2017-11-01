@@ -74,6 +74,9 @@ code of the library and understand what is happening. It is in this case that I 
 python pycv-proj-test.py images/image_filename
 python3 pycv-proj-test.py images/image_filename
 python pycv-proj-test.py images/image_filename -nodebug
+python3 pycv-proj-test.py images/image_filename -nodebug
+python pycv-proj-test.py -nodebug images/image_filename
+python3 pycv-proj-test.py -nodebug images/image_filename
 ```
 
 # Teste para desenvolvedores Python + OpenCV
@@ -154,5 +157,8 @@ código fonte e entender o que acontece. É nesse ponto eu me considero adequado
 python pycv-proj-test.py images/image_filename
 python3 pycv-proj-test.py images/image_filename
 python pycv-proj-test.py images/image_filename -nodebug
+python3 pycv-proj-test.py images/image_filename -nodebug
+python pycv-proj-test.py -nodebug images/image_filename
+python3 pycv-proj-test.py -nodebug images/image_filename
 ```
 

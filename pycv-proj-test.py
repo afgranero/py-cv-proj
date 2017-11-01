@@ -23,37 +23,40 @@
 #     - I used virtualenv to isolate libraries;
 #     - I did not committed the virtual environment to git though, I used `pip freeze` to create a `requirements.txt`;
 #     - refer to `requirements.txt` for the libraries versions needed;
-#     - I created the switch `-nodebug` on the command line, without this switch it will do this:
+#     - I created the switch `-debug` on the command line, it will do this:
 #         - show windows with the intermediate states of processing on screen;
 #         - you can use left and right arrow keys to navigate intermediate steps;
 #         - save the intermediate images with same name as the original as prefix and with suffix `_1`, `_2`, etc;
 #         - on a production environment I would separate this on another class using python decorators to call it;
-#         - on a production environment I would do the opposite: to create a `-debug` switch instead
 #         - if there were much more test cases I would not print them individually, I would just save the steps.
 
-
 # Usage:
-#
-#   python pycv-proj-test.py images/image_filename
-#   python3 pycv-proj-test.py images/image_filename
-#   python pycv-proj-test.py images/image_filename -nodebug
+#     python pycv-proj-test.py images/image_filename
+#     python3 pycv-proj-test.py images/image_filename
+#     python pycv-proj-test.py images/image_filename -nodebug
+#     python3 pycv-proj-test.py images/image_filename -nodebug
+#     python pycv-proj-test.py -nodebug images/image_filename
+#     python3 pycv-proj-test.py -nodebug images/image_filename
+
+import sys
+import os
+import math
 
 import numpy as np
 import cv2
-import sys
-import math
 
 
 class FindCircles:
 
     def __init__(self, image_file, debug=True):
+        self.image_file = image_file
         self.img = cv2.imread(image_file)
 
         if self.img is None:
             raise RuntimeError("'%s' file not found." % image_file)
 
-        self.debug = debug
         self.circles = None
+        self.debug = debug
         if debug:
             self.debug_images = []
             self.debug_titles = []
@@ -62,13 +65,13 @@ class FindCircles:
 
     def execute(self):
         img = np.array(self.img, copy=True)
-        self._show_step(0, "original", img)
+        self._debug_show_step(0, "original", img)
 
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        self._show_step(1, "gray scale", img)
+        self._debug_show_step(1, "gray scale", img)
 
         img = self.clean_noise(img)
-        self._show_step(2, "cleaned", img)
+        self._debug_show_step(2, "cleaned", img)
 
         circles = self.find_circles(img, 37)
         self.circles = circles
@@ -76,7 +79,7 @@ class FindCircles:
         clusters = self.cluster_centers(circles, 50)
 
         img = self.highlight_clusters(self.img, clusters)
-        self._show_step(3, "result", img)
+        self._debug_show_step(3, "result", img)
 
         return img
 
@@ -131,7 +134,7 @@ class FindCircles:
             return img
 
         CIRCLE_COLOR = (255, 0, 0)
-        CENTER_INNER_COLOR = (0, 0, 255)
+        CENTER_INNER_COLOR = (255, 255, 255)
         CENTER_OUTER_COLOR = (0, 255, 0)
 
         original_image = np.array(img, copy=True)
@@ -139,19 +142,22 @@ class FindCircles:
         for i in circles[0, :]:
             center = (i[0], i[1])
             radius = i[2]
-            cv2.circle(original_image, center, radius, CIRCLE_COLOR, 1)  # show circle
-            cv2.circle(original_image, center, 2, CENTER_INNER_COLOR, -1)  # show centers as a 2 pixel radius ball
-            cv2.circle(original_image, center, 2, CENTER_OUTER_COLOR, 1)  # show centers as a 2 pixel radius ball
+            cv2.circle(original_image, center, radius, CIRCLE_COLOR, 2)  # show circle
+            cv2.circle(original_image, center, 3, CENTER_INNER_COLOR, -1)  # show centers as a 2 pixel radius ball
+            cv2.circle(original_image, center, 3, CENTER_OUTER_COLOR, 1)  # show centers as a 2 pixel radius circle
 
         return original_image
 
-    def _show_step(self, n, title, img):
+    def _debug_show_step(self, n, title, img):
         if self.debug:
-
             self.debug_images_current = n
             self.debug_images_count += 1
             self.debug_images.append(img)
             self.debug_titles.append(title)
+
+            out_file_name, out_file_extension = os.path.splitext(self.image_file)
+            out_file_name = "%s_%d%s" % (out_file_name, n, out_file_extension)
+            cv2.imwrite(out_file_name, img)
 
             while True:
                 cv2.destroyAllWindows()
@@ -175,26 +181,59 @@ class FindCircles:
                     cv2.destroyAllWindows()
                     break
 
-    def _save_images(self):
-        # TODO save all images on self.debug_images
-        pass
 
+def show_result(img1, img2):
+    # create composite result image from initial and final images
+    height, width, channels = img2.shape
+    black_image = np.zeros((height, 1, 3), np.uint8)  # thin vertical black border
+    white_image = np.full((height, 1, 3), np.uint8(255)) # thin vertical white border
+    result = np.hstack((img1, black_image, white_image, img2))
+
+    cv2.imshow("Final result - (to enable intermediate results use -debug on command line)", result)
+    cv2.waitKey()
 
 def main():
     # do all the stuff
-    find_circles = FindCircles(sys.argv[1])
+    if  len(sys.argv) > 3:
+        print("Too many parameters.")
+        exit(-1)
+
+    debug_switch = "-debug"
+
+    if len(sys.argv) == 1:
+        print("No parameter supplied.")
+        print("Usage:")
+        print("    python %s %s" % (sys.argv[0], "file_name"))
+        print("    python3 %s %s" % (sys.argv[0], "file_name"))
+        print("    python %s %s %s" % (sys.argv[0], "file_name", debug_switch))
+        print("    python3 %s %s %s" % (sys.argv[0], "file_name", debug_switch))
+        print("    python %s %s %s" % (sys.argv[0], debug_switch, "file_name",))
+        print("    python3 %s %s %s" % (sys.argv[0], debug_switch, "file_name"))
+        exit(-1)
+
+    if debug_switch in sys.argv and len(sys.argv) == 2:
+        print("File name not supplied.")
+        exit(-1)
+
+    if debug_switch in sys.argv and len(sys.argv) == 3:
+        debug = True
+        pos = sys.argv.index(debug_switch)
+        if pos == 1:
+            file_name = sys.argv[2]
+        elif pos == 2:
+            file_name = sys.argv[1]
+        else:
+            print("Parameter not recognized")
+            exit(-1)
+    else:
+        debug = False
+        file_name = sys.argv[1]
+
+    find_circles = FindCircles(file_name, debug)
     img = find_circles.execute()
 
-    # create composite result image from initial and final images
-    height, width, channels = img.shape
-    black_image = np.zeros((height, 1, 3), np.uint8)  # thin vertical black border
-    result = np.hstack((find_circles.img, black_image, img))
+    show_result(find_circles.img, img)
 
-    cv2.imshow("Final result", result)
-    cv2.waitKey()
-
-    # TODO print circle coordinates from CircleFinder
-    # TODO save processed image with highlighted circles and print this action so the user knows it
     # TODO find -nodebug argument and use the others as the file
 
 if __name__ == "__main__":
