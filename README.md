@@ -48,8 +48,8 @@ bubble chambers (I am a physicist so excuse me the digression).
 <p align="justify">
 Hough transform and its descendants are powerful and fast, but as everything the trouble is on the implementation.
 The implementation used by OpenCV integrate several things on a monolithic method, it is made to be used on images with
-little treatment, for that internally `cv2.HoughTransform` uses a Sobel filter and a canny filter. The parameter names
-also do not stimulate the understanding (`param1` e `param2`).
+little treatment, for that internally <pre>cv2.HoughTransform</pre> uses a Sobel filter and a canny filter. The
+parameter names also do not stimulate the understanding (<pre>param1</pre> e <pre>param2</pre>).
 </p>
 
 <p align="justify">
@@ -108,9 +108,9 @@ Detetar circunferências maiores que 10 pixels.
 **Pensamentos sobre o desenvolvimento**
 
 <p align="justify">
-A maioria dos usuários usam o OpenCV como uma caixa preta, sem entender realmente seus algoritmos, isso é
-estimulado pelos criadores da biblioteca, para simplificar e estimular seu uso, a prova disso é que a documentação usa a
-abordagem de exemplos sem muitos detalhes sobre o funcionamento interno.
+A maioria dos usuários usam o OpenCV como uma caixa preta, sem entender realmente seus algoritmos, isso é estimulado
+pelos criadores da biblioteca, para simplificar e estimular seu uso, a prova disso é que a documentação usa a abordagem
+de exemplos sem muitos detalhes sobre o funcionamento interno.
 </p>
 
 <p align="justify">
@@ -121,31 +121,31 @@ de coordenadas que transforma circunferências em cones em um espaço de parâme
 
 <p align="justify">
 Na verdade essa é uma transformada de Hough generalizada, já que a transsformada de Hough original foi criada para
-detetar linhas retas para achar traços em imagens em câmaras de bolha para uso em física (eu sou físico, assim me
-perdoe a digressão).
+detetar linhas retas para achar traços em imagens em câmaras de bolha para uso em física (eu sou físico, assim me perdoe
+a digressão).
 </p>
 
 <p align="justify">
 A transformada de Hough e seus descendentes são poderosas e rápidas, mas como tudo o problema está na implementação.
 A implementação usada pelo OpenCV integra muitas coisas em um método monolítico, ela é feita para ser usada em imagens
-com pouco tratamente, para isso internamente a ``cv2.HoughTransform`` utiliza um filtro Sobel e um filtro _canny_. Os
-nomes dos parâmetros também não estimulam muito a compreensão (`param1` e `param2`).
+com pouco tratamente, para isso internamente a <pre>cv2.HoughTransform</pre> utiliza um filtro Sobel e um filtro
+<i>canny</i>. Os nomes dos parâmetros também não estimulam muito a compreensão (<pre>param1</pre> e <pre>param2</pre>).
 </p>
 
 <p align="justify">
 Essa abordagem monolítica tende a fazer ser complexo ajustar os parâmetros. Como não temos acesso aos valores
 intermediários dos resultados dos filtros (o que tornaria simples entender o que deu errado) a maneira de ajustar os
 parâmetros é por intuição e por tentativa e erro. Isso gera comenmente programas como o meu onde os parâmetros são
-ajustados recursivamente ou em _loop_ até se atingir um resultado desejado.
+ajustados recursivamente ou em <i>loop</i> até se atingir um resultado desejado.
 </p>
 
 <p align="justify">
-Outro efeito colateral disso é ela funcionar melhor em círculos do que circunferências, pois os filtros Sobel e _canny_
-extraem uma borda.
+Outro efeito colateral disso é ela funcionar melhor em círculos do que circunferências, pois os filtros Sobel e
+<i>canny</i> extraem uma borda.
 </p>
 
 <p align="justify">
-É nessa hora que o conhecimento dos algortimos se torna um diferencial, e mesmo o conhecimento de C  C++ para olhar o
+É nessa hora que o conhecimento dos algortimos se torna um diferencial, e mesmo o conhecimento de C e C++ para olhar o
 código fonte e entender o que acontece. É nesse ponto eu me considero adequado.
 </p>
 
