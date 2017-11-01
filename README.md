@@ -48,8 +48,8 @@ bubble chambers (I am a physicist so excuse me the digression).
 <p align="justify">
 Hough transform and its descendants are powerful and fast, but as everything the trouble is on the implementation.
 The implementation used by OpenCV integrate several things on a monolithic method, it is made to be used on images with
-little treatment, for that internally <pre>cv2.HoughTransform</pre> uses a Sobel filter and a canny filter. The
-parameter names also do not stimulate the understanding (<pre>param1</pre> e <pre>param2</pre>).
+little treatment, for that internally <xmp>cv2.HoughTransform</xmp> uses a Sobel filter and a canny filter. The
+parameter names also do not stimulate the understanding (<xmp>param1</xmp> e <xmp>param2</xmp>).
 </p>
 
 <p align="justify">
@@ -128,8 +128,8 @@ a digressão).
 <p align="justify">
 A transformada de Hough e seus descendentes são poderosas e rápidas, mas como tudo o problema está na implementação.
 A implementação usada pelo OpenCV integra muitas coisas em um método monolítico, ela é feita para ser usada em imagens
-com pouco tratamente, para isso internamente a <pre>cv2.HoughTransform</pre> utiliza um filtro Sobel e um filtro
-<i>canny</i>. Os nomes dos parâmetros também não estimulam muito a compreensão (<pre>param1</pre> e <pre>param2</pre>).
+com pouco tratamente, para isso internamente a <xmp>cv2.HoughTransform</xmp> utiliza um filtro Sobel e um filtro
+<i>canny</i>. Os nomes dos parâmetros também não estimulam muito a compreensão (<xmp>param1</xmp> e <xmp>param2</xmp>).
 </p>
 
 <p align="justify">
