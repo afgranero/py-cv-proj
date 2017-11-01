@@ -107,9 +107,9 @@ class FindCircles():
         if circles is None:
             # no circle found use smaller param2 do it just once to avoid find too many circles and too much recursion
             # the easiest way if to set a min value to param2
-            min_param2 = 18
+            min_param2 = 14
             if param2 > min_param2:
-                param2 /= 2
+                param2 /= 2.5
                 return self.find_circles(img, param2)
             else:
                 return None
@@ -229,8 +229,7 @@ def main():
 
     # TODO print circle coordinates from CircleFinder
     # TODO save processed image with highlighted circles and print this action so the user knows it
-    # TODO find -nodebug argument aun use the others as the file
-    # TODO validate file existence before passing it
+    # TODO find -nodebug argument and use the others as the file
 
 if __name__ == "__main__":
     main()
