@@ -53,10 +53,10 @@ stimulate the understanding (<code>param1</code> and <code>param2</code>).
 </p>
 
 <p align="justify">
-This monolithic approach leads to being complex to tune the parametrrs. As we don't have acess to the intermediate
+This monolithic approach leads to being complex to tune the parameters. As we don't have access to the intermediate
 values of the filter results (what would make simple to understand what had gone wrong) the way of adjusting those
 parameters is by feeling and by trial and error. This generate programs like mine where the parameters are adjusted
-recursively or in a loop until the desired rsult is reached.
+recursively or in a loop until the desired result is reached.
 </p>
 
 <p align="justify">
@@ -66,7 +66,7 @@ filters detects borders.
 
 <p align="justify">
 It is when knowledge of the algorithms becomes a diferential, and even knowledge of C and C++ to look on the source
-code of the library and undertand what is happening. It is in this case that I consider myself fit.
+code of the library and understand what is happening. It is in this case that I consider myself fit.
 </p>
 
 **Usage:**

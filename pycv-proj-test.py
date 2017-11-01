@@ -62,7 +62,6 @@ class FindCircles:
 
     def execute(self):
         img = np.array(self.img, copy=True)
-
         self._show_step(0, "original", img)
 
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -73,8 +72,9 @@ class FindCircles:
 
         circles = self.find_circles(img, 37)
         self.circles = circles
+
         clusters = self.cluster_centers(circles, 50)
-        clusters = np.array([clusters], copy=True)
+
         img = self.highlight_clusters(self.img, clusters)
         self._show_step(3, "result", img)
 
@@ -123,6 +123,7 @@ class FindCircles:
             else:
                 clusters = np.append(clusters, [[cir[0], cir[1], cir[2]]], axis=0)
 
+        clusters = np.array([clusters], copy=True)
         return clusters
 
     def highlight_clusters(self, img, circles):
