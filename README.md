@@ -5,7 +5,7 @@
 
 Detect circles with diameter greater than 10 pixels.
 
-**Comments on my solution:**
+**Comments on the environment and project decisions:**
 
 - I pulled this to github [here](https://github.com/afgranero/py-cv-proj) ;
 - I have other repos, but they are private because they are not finished, tell me if you want access to them;
@@ -49,8 +49,9 @@ bubble chambers (I am a physicist so excuse me the digression).
 Hough transform and its descendants are powerful and fast, but as everything the trouble is on the implementation.
 The implementation used by OpenCV integrate several things on a monolithic method, it is made to be used on images with
 little treatment, for that it uses internally a Sobel filter and a canny filter. The parameter names also do not
-stimulate the understanding (<code>param1</code> and <code>param2</code>).
-</p>
+stimulate the understanding: <code>param1</code> for instance is the upper threshold used on the canny edge detection
+previous to the Hought transform itself (the lower threshold is not under our control being half this value)
+and <code>param2</code> is the threshold of the acumulator used by the Hough transform itself.</p>
 
 <p align="justify">
 This monolithic approach leads to being complex to tune the parameters. As we don't have access to the intermediate
@@ -67,6 +68,12 @@ filters detects borders.
 <p align="justify">
 It is when knowledge of the algorithms becomes a diferential, and even knowledge of C and C++ to look on the source
 code of the library and understand what is happening. It is in this case that I consider myself fit.
+</p>
+
+<p align="justify">
+<b><i>If</i></b> I was to implement it I would use the intermediate steps of the circle Hough transform as callbacks
+with defaults so better control and visualization of this steps could be achieved, making much easier to adjust
+parameters.
 </p>
 
 **Usage:**
@@ -86,7 +93,7 @@ python3 pycv-proj-test.py -nodebug images/image_filename
 
 Detetar circunferências maiores que 10 pixels.
 
-**Commentários à minha solução:**
+**Commentários sobre meu ambiente e decisões de projeto:**
 
 - Fiz _pull_ para o _github_ [aqui](https://github.com/afgranero/py-cv-proj)
 - tenho outros repositórios, mas eles são privados pois ainda estão incompletos;
@@ -108,7 +115,7 @@ Detetar circunferências maiores que 10 pixels.
         - em um ambiente de produção eu faria o inverso: criaria um _switch_ `-debug`;
         - seu houvesse muitos casos de teste eu não os mostraria individualmente, eu apenas salvaria os passos.
 
-**Pensamentos sobre o desenvolvimento**
+**Pensamentos sobre a solução**
 
 <p align="justify">
 A maioria dos usuários usam o OpenCV como uma caixa preta, sem entender realmente seus algoritmos, isso é estimulado
@@ -123,7 +130,7 @@ de coordenadas que transforma circunferências em cones em um espaço de parâme
 </p>
 
 <p align="justify">
-Na verdade essa é uma transformada de Hough generalizada, já que a transsformada de Hough original foi criada para
+Na verdade essa é uma transformada de Hough generalizada, já que a transformada de Hough original foi criada para
 detetar linhas retas para achar traços em imagens em câmaras de bolha para uso em física (eu sou físico, assim me perdoe
 a digressão).
 </p>
@@ -132,7 +139,9 @@ a digressão).
 A transformada de Hough e seus descendentes são poderosas e rápidas, mas como tudo o problema está na implementação.
 A implementação usada pelo OpenCV integra muitas coisas em um método monolítico, ela é feita para ser usada em imagens
 com pouco tratamente, para isso internamente ela utiliza um filtro Sobel e um filtro <i>canny</i>. Os nomes dos
-parâmetros também não estimulam muito a compreensão (<code>param1</code> e <code>param2</code>).
+parâmetros também não estimulam muito a compreensão: <code>param1</code> por exemplo é o limiar superior usado na
+deteção de borda <i>canny<i> (sendo que o limiar inferior não está sob nosso controle sendo metade deste valor) e
+<code>param2</code> que é o limiar do acumulador do algoritmo implementado para a transformada de Hough.
 </p>
 
 <p align="justify">
@@ -151,6 +160,12 @@ Outro efeito colateral disso é ela funcionar melhor em círculos do que circunf
 É nessa hora que o conhecimento dos algortimos se torna um diferencial, e mesmo o conhecimento de C e C++ para olhar o
 código fonte e entender o que acontece. É nesse ponto eu me considero adequado.
 </p>
+
+<p align="justify">
+<b><i>Se</i></b> eu fosse implementar-lo, eu faria com que os passos intermediários da transformada de Hough para
+circunferências fossem <i>calbacks<i> com <i>defaults</i> permitinfo melhor controle e visualização destes passos, facilitando
+muito o ajuste dos parâmetros.
+ </p>
 
 **Uso:**
 ```

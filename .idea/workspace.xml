@@ -42,8 +42,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="758">
-              <caret line="39" column="34" lean-forward="false" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+            <state relative-caret-position="382">
+              <caret line="84" column="55" lean-forward="true" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -54,6 +54,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>highlight_clusters</find>
+      <find>param</find>
+      <find>param1</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -627,8 +629,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
-          <caret line="39" column="34" lean-forward="false" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        <state relative-caret-position="382">
+          <caret line="84" column="55" lean-forward="true" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
           <folding />
         </state>
       </provider>
