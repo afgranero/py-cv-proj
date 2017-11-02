@@ -48,8 +48,8 @@ bubble chambers (I am a physicist so excuse me the digression).
 <p align="justify">
 Hough transform and its descendants are powerful and fast, but as everything the trouble is on the implementation.
 The implementation used by OpenCV integrate several things on a monolithic method, it is made to be used on images with
-little treatment, for that it uses internally a Sobel filter and a canny filter. The parameter names also do not
-stimulate the understanding: <code>param1</code> for instance is the upper threshold used on the canny edge detection
+little treatment, for that it uses internally a Sobel filter and a Canny filter. The parameter names also do not
+stimulate the understanding: <code>param1</code> for instance is the upper threshold used on the Canny edge detection
 previous to the Hought transform itself (the lower threshold is not under our control being half this value)
 and <code>param2</code> is the threshold of the acumulator used by the Hough transform itself.</p>
 
@@ -61,7 +61,7 @@ recursively or in a loop until the desired result is reached.
 </p>
 
 <p align="justify">
-Another side effect of that is to make it work better on balls (filled circles) than on circles, as Sobel and canny
+Another side effect of that is to make it work better on balls (filled circles) than on circles, as Sobel and Canny
 filters detects borders.
 </p>
 
@@ -138,9 +138,9 @@ a digressão).
 <p align="justify">
 A transformada de Hough e seus descendentes são poderosas e rápidas, mas como tudo o problema está na implementação.
 A implementação usada pelo OpenCV integra muitas coisas em um método monolítico, ela é feita para ser usada em imagens
-com pouco tratamente, para isso internamente ela utiliza um filtro Sobel e um filtro <i>canny</i>. Os nomes dos
+com pouco tratamente, para isso internamente ela utiliza um filtro Sobel e um filtro Canny. Os nomes dos
 parâmetros também não estimulam muito a compreensão: <code>param1</code> por exemplo é o limiar superior usado na
-deteção de borda <i>canny<i> (sendo que o limiar inferior não está sob nosso controle sendo metade deste valor) e
+deteção de borda Canny (sendo que o limiar inferior não está sob nosso controle sendo metade deste valor) e
 <code>param2</code> que é o limiar do acumulador do algoritmo implementado para a transformada de Hough.
 </p>
 
@@ -153,7 +153,7 @@ ajustados recursivamente ou em <i>loop</i> até se atingir um resultado desejado
 
 <p align="justify">
 Outro efeito colateral disso é ela funcionar melhor em círculos do que circunferências, pois os filtros Sobel e
-<i>canny</i> extraem uma borda.
+Canny extraem uma borda.
 </p>
 
 <p align="justify">
