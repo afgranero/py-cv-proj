@@ -35,9 +35,9 @@ directed approach, without many details of its internal workings.
 </p>
 
 <p align="justify">
-This is the greatest reason to OpenCV popularity, its power and at the same tme its greatest weakness. The Hough
+This is the greatest reason to OpenCV popularity, its power and at the same time its greatest weakness. The Hough
 transform used here is a good example of that, few users know that the Hough transform is a clever change of
-coordinates that transform circunferences in cones on a 3D parameter space.
+coordinates that transform circles in cones on a 3D parameter space.
 </p>
 
 <p align="justify">
