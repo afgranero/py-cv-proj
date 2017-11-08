@@ -163,7 +163,8 @@ código fonte e entender o que acontece. É nesse ponto eu me considero adequado
 
 <p align="justify">
 <b><i>Se</i></b> eu fosse implementar-lo, eu faria com que os passos intermediários da transformada de Hough para
-circunferências fossem <i>calbacks<i> com <i>defaults</i> permitinfo melhor controle e visualização destes passos, facilitando
+circunferências fossem <i>calbacks</i> com <i>defaults</i> permitindo melhor controle e visualização destes passos, facilitando
+circunferências fossem <i>calbacks</i> com <i>defaults</i> permitindo melhor controle e visualização destes passos, facilitando
 muito o ajuste dos parâmetros.
  </p>
 
